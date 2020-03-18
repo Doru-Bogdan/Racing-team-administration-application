@@ -12,7 +12,7 @@ namespace Racing_team_management.Models
         public string Location { get; set; }
         public int NumberOfSpectators { get; set; }
 
-        public List<TeamComponents> TeamComponents { get; set; }
+        public List<TeamComponent> TeamComponent { get; set; }
 
 
 
