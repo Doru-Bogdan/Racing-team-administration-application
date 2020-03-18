@@ -9,12 +9,12 @@ namespace Racing_team_management.Contexts
 {
     public class Context : DbContext
     {
-        public DbSet<Components> Components { get; set; }
+        public DbSet<Component> Components { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Manufacturer> Manufacturers { get; set; }
         public DbSet<Race> Races { get; set; }
         public DbSet<Team> Teams { get; set; }
-        public DbSet<TeamComponents> TeamComponents { get; set; }
+        public DbSet<TeamComponent> TeamComponents { get; set; }
         public DbSet<TeamRace> TeamRaces { get; set; }
         public static bool isMigration = true;
 

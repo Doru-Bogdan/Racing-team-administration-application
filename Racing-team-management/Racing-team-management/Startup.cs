@@ -9,6 +9,15 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
+using Racing_team_management.Contexts;
+using Racing_team_management.Repositories.ComponentsRepository;
+using Racing_team_management.Repositories.EmployeeRepository;
+using Racing_team_management.Repositories.ManufacturerRepository;
+using Racing_team_management.Repositories.RaceRepository;
+using Racing_team_management.Repositories.TeamComponentsRepository;
+using Racing_team_management.Repositories.TeamRaceRepository;
+using Racing_team_management.Repositories.TeamRepository;
 
 namespace Racing_team_management
 {
@@ -24,18 +33,19 @@ namespace Racing_team_management
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<CookiePolicyOptions>(options =>
-            {
-                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-                options.CheckConsentNeeded = context => true;
-                options.MinimumSameSitePolicy = SameSiteMode.None;
-            });
-
-
+            services.AddCors();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddDbContext<Context>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddTransient<IComponentRepository, ComponentRepository>();
+            services.AddTransient<IEmployeeRepository, EmployeeRepository>();
+            services.AddTransient<IManufacturerRepository, ManufacturerRepository>();
+            services.AddTransient<IRaceRepository, RaceRepository>();
+            services.AddTransient<ITeamComponentRepository, TeamComponentRepository>();
+            services.AddTransient<ITeamRaceRepository, TeamRaceRepository>();
+            services.AddTransient<ITeamRepository, TeamRepository>();
         }
-		//test comment
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
@@ -44,14 +54,13 @@ namespace Racing_team_management
             }
             else
             {
-                app.UseExceptionHandler("/Error");
                 app.UseHsts();
             }
-
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
-            app.UseCookiePolicy();
-
+            app.UseCors(builder => builder.AllowAnyOrigin()
+                                          .AllowAnyMethod()
+                                          .AllowAnyHeader()
+                                          .AllowCredentials());
             app.UseMvc();
         }
     }
