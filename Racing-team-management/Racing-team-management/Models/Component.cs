@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Racing_team_management.Models
 {
-    public class Components
+    public class Component
 {
         public int Id { get; set; }
         public int ManufacturerId { get; set; }
@@ -15,7 +15,7 @@ namespace Racing_team_management.Models
         public string Status { get; set; }
 
         public virtual Manufacturer Manufacturer { get; set; }
-        public List<TeamComponents> TeamComponents { get; set; }
+        public List<TeamComponent> TeamComponent { get; set; }
 
 
     }

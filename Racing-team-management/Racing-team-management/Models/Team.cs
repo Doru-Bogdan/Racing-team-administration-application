@@ -13,7 +13,7 @@ namespace Racing_team_management.Models
 
         public List<TeamRace> TeamRace { get; set; }
         public List<Employee> Employee { get; set; }
-        public List<TeamComponents> TeamComponents { get; set; }
+        public List<TeamComponent> TeamComponent { get; set; }
 
     }
 }
