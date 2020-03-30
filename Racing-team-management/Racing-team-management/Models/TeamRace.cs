@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 namespace Racing_team_management.Models
 {
     public class TeamRace
-{
+    {
         public int Id { get; set; }
         public int Id_team { get; set; }
         public int Id_race { get; set; }

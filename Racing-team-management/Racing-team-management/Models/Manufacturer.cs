@@ -11,6 +11,6 @@ namespace Racing_team_management.Models
         public string Name { get; set; }
         public string Location { get; set; }
 
-        public List<Component> Component { get; set; }
+        public List<Component> Components { get; set; }
     }
 }
