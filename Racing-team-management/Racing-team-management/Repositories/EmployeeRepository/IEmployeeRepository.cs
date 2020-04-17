@@ -7,7 +7,7 @@ using Racing_team_management.Models;
 
 namespace Racing_team_management.Repositories.EmployeeRepository
 {
-    interface IEmployeeRepository
+    public interface IEmployeeRepository
     {
         List<Employee> GetAll();
         Employee Get(int Id);
