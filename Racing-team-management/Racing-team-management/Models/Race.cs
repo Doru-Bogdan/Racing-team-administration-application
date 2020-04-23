@@ -12,6 +12,8 @@ namespace Racing_team_management.Models
         public string Location { get; set; }
         public int NumberOfSpectators { get; set; }
 
+        public string img { get; set; }
+
         public List<TeamComponent> TeamComponents { get; set; }
     }
 }
