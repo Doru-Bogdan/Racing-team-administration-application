@@ -43,8 +43,8 @@ namespace Racing_team_management.Controllers
         {
             TeamRace model = new TeamRace()
             {
-                Id_race = value.Id_race,
-                Id_team = value.Id_team
+                RaceId = value.Id_race,
+                TeamId = value.Id_team
             };
 
             return ITeamRaceRepository.Create(model);
@@ -58,11 +58,11 @@ namespace Racing_team_management.Controllers
 
             if (value.Id_race != 0)
             {
-                model.Id_race = value.Id_race;
+                model.RaceId = value.Id_race;
             }
             if (value.Id_team != 0)
             {
-                model.Id_team = value.Id_team;
+                model.TeamId = value.Id_team;
             }
 
             return ITeamRaceRepository.Update(model);
