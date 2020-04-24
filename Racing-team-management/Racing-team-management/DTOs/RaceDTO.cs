@@ -7,6 +7,7 @@ namespace Racing_team_management.DTOs
         public int Duration { get; set; }
         public string Location { get; set; }
         public int NumberOfSpectators { get; set; }
+        public string Image { get; set; }
 
         public List<int>IdTeams { get; set; }
     }

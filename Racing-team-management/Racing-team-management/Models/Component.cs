@@ -13,7 +13,7 @@ namespace Racing_team_management.Models
         public float Price { get; set; }
         public int Quantity { get; set; }
         public string Status { get; set; }
-        public string img { get; set; }
+        public string Image { get; set; }
 
         public virtual Manufacturer Manufacturer { get; set; }
         public List<TeamComponent> TeamComponents { get; set; }

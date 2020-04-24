@@ -45,7 +45,8 @@ namespace Racing_team_management.Controllers
             {
                 Duration = race.Duration,
                 Location = race.Location,
-                NumberOfSpectators = race.NumberOfSpectators
+                NumberOfSpectators = race.NumberOfSpectators,
+                Image = race.Image
             };
 
             IEnumerable<TeamRace> teamRaces = ITeamRaceRepository.GetAll().Where(x => x.Id_race == id);
@@ -72,7 +73,8 @@ namespace Racing_team_management.Controllers
             {
                 Location = value.Location,
                 Duration = value.Duration,
-                NumberOfSpectators = value.NumberOfSpectators
+                NumberOfSpectators = value.NumberOfSpectators,
+                Image = value.Image
             };
 
             for (int i = 0; i < value.IdTeams.Count; i++)
@@ -105,6 +107,10 @@ namespace Racing_team_management.Controllers
             if (value.NumberOfSpectators != 0)
             {
                 model.NumberOfSpectators = value.NumberOfSpectators;
+            }
+            if (value.Image != null)
+            {
+                model.Image = value.Image;
             }
 
             if (value.IdTeams != null)
