@@ -43,7 +43,7 @@ namespace Racing_team_management.Controllers
         {
             Employee model = new Employee()
             {
-                IdTeam = value.IdTeam,
+                TeamId = value.IdTeam,
                 First_name = value.First_name,
                 Second_name = value.Second_name,
                 Age = value.Age,
@@ -77,7 +77,7 @@ namespace Racing_team_management.Controllers
             }
             if (value.IdTeam != 0)
             {
-                model.IdTeam = value.IdTeam;
+                model.TeamId = value.IdTeam;
             }
 
             return IEmployeeRepository.Update(model);

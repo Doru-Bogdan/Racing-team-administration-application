@@ -16,6 +16,6 @@ namespace Racing_team_management.Models
         public string Image { get; set; }
 
         public virtual Manufacturer Manufacturer { get; set; }
-        public List<TeamComponent> TeamComponents { get; set; }
+        public List<TeamComponent> TeamComponent { get; set; }
     }
 }

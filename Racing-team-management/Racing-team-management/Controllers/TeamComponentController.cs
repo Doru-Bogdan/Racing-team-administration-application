@@ -43,8 +43,8 @@ namespace Racing_team_management.Controllers
         {
             TeamComponent model = new TeamComponent()
             {
-                Id_team = value.Id_team,
-                Id_component = value.Id_component
+                TeamId = value.Id_team,
+                ComponentId = value.Id_component
             };
 
             return ITeamComponentRepository.Create(model);
@@ -58,11 +58,11 @@ namespace Racing_team_management.Controllers
 
             if (value.Id_team != 0)
             {
-                model.Id_team = value.Id_team;
+                model.TeamId = value.Id_team;
             }
             if (value.Id_component != 0)
             {
-                model.Id_component = value.Id_component;
+                model.ComponentId = value.Id_component;
             }
 
             return ITeamComponentRepository.Update(model);
