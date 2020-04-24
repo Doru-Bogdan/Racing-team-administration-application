@@ -55,20 +55,20 @@ namespace Racing_team_management.Controllers
                 Image = Team.Image
             };
 
-            IEnumerable<Employee> employees = IEmployeeRepository.GetAll().Where(x => x.IdTeam == id);
+            IEnumerable<Employee> employees = IEmployeeRepository.GetAll().Where(x => x.TeamId == id);
             if (employees != null)
             {
                 List<string> employeeNames = employees.Select(x => x.First_name + " " + x.Second_name).ToList();
                 TeamDTO.Employees = employeeNames;
             }
 
-            IEnumerable<TeamRace> teamRaces = ITeamRaceRepository.GetAll().Where(x => x.Id_team == id);
+            IEnumerable<TeamRace> teamRaces = ITeamRaceRepository.GetAll().Where(x => x.TeamId == id);
             if (teamRaces != null)
             {
                 List<string> races = new List<string>();
                 foreach (TeamRace teamRace in teamRaces)
                 {
-                    Race race = IRaceRepository.GetAll().SingleOrDefault(x => x.Id == teamRace.Id_race);
+                    Race race = IRaceRepository.GetAll().SingleOrDefault(x => x.Id == teamRace.RaceId);
                     races.Add(race.Location);
                 }
                 TeamDTO.Races = races;
@@ -93,7 +93,7 @@ namespace Racing_team_management.Controllers
             {
                 Employee newEmployee = new Employee()
                 {
-                    IdTeam = model.Id,
+                    TeamId = model.Id,
                     First_name = employee.First_name,
                     Second_name = employee.Second_name,
                     Function = employee.Function,
@@ -106,8 +106,8 @@ namespace Racing_team_management.Controllers
             {
                 TeamComponent newTeamComponent = new TeamComponent()
                 {
-                    Id_component = value.ComponentsId[i],
-                    Id_team = model.Id
+                    ComponentId = value.ComponentsId[i],
+                    TeamId = model.Id
                 };
                 ITeamComponentRepository.Create(newTeamComponent);
             }
@@ -116,8 +116,8 @@ namespace Racing_team_management.Controllers
             {
                 TeamRace newTeamRace = new TeamRace()
                 {
-                    Id_team = model.Id,
-                    Id_race = value.RacesId[i]
+                    TeamId = model.Id,
+                    RaceId = value.RacesId[i]
                 };
                 ITeamRaceRepository.Create(newTeamRace);
             }
@@ -144,7 +144,7 @@ namespace Racing_team_management.Controllers
 
             if (value.ComponentsId != null)
             {
-                IEnumerable<TeamComponent> teamComponents = ITeamComponentRepository.GetAll().Where(x => x.Id_team == id);
+                IEnumerable<TeamComponent> teamComponents = ITeamComponentRepository.GetAll().Where(x => x.TeamId == id);
                 foreach (TeamComponent teamComponent in teamComponents)
                     ITeamComponentRepository.Delete(teamComponent);
 
@@ -152,8 +152,8 @@ namespace Racing_team_management.Controllers
                 {
                     TeamComponent newTeamComponent = new TeamComponent()
                     {
-                        Id_component = value.ComponentsId[i],
-                        Id_team = model.Id
+                        ComponentId = value.ComponentsId[i],
+                        TeamId = model.Id
                     };
                     ITeamComponentRepository.Create(newTeamComponent);
                 }
@@ -161,7 +161,7 @@ namespace Racing_team_management.Controllers
 
             if (value.Employees != null)
             {
-                IEnumerable<Employee> employees = IEmployeeRepository.GetAll().Where(x => x.IdTeam == id);
+                IEnumerable<Employee> employees = IEmployeeRepository.GetAll().Where(x => x.TeamId == id);
                 foreach (Employee employee in employees)
                     IEmployeeRepository.Delete(employee);
 
@@ -169,7 +169,7 @@ namespace Racing_team_management.Controllers
                 {
                     Employee newEmployee = new Employee()
                     {
-                        IdTeam = model.Id,
+                        TeamId = model.Id,
                         First_name = employee.First_name,
                         Second_name = employee.Second_name,
                         Function = employee.Function,
@@ -181,7 +181,7 @@ namespace Racing_team_management.Controllers
 
             if (value.RacesId != null)
             {
-                IEnumerable<TeamRace> teamRaces = ITeamRaceRepository.GetAll().Where(x => x.Id_team == id);
+                IEnumerable<TeamRace> teamRaces = ITeamRaceRepository.GetAll().Where(x => x.TeamId == id);
                 foreach (TeamRace teamRace in teamRaces)
                     ITeamRaceRepository.Delete(teamRace);
 
@@ -189,8 +189,8 @@ namespace Racing_team_management.Controllers
                 {
                     TeamRace newTeamRace = new TeamRace()
                     {
-                        Id_team = model.Id,
-                        Id_race = value.RacesId[i]
+                        TeamId = model.Id,
+                        RaceId = value.RacesId[i]
                     };
                     ITeamRaceRepository.Create(newTeamRace);
                 }
@@ -203,15 +203,15 @@ namespace Racing_team_management.Controllers
         {
             Team model = ITeamRepository.Get(id);
 
-            IEnumerable<Employee> employees = IEmployeeRepository.GetAll().Where(x => x.IdTeam == id);
+            IEnumerable<Employee> employees = IEmployeeRepository.GetAll().Where(x => x.TeamId == id);
             foreach (Employee employee in employees)
                 IEmployeeRepository.Delete(employee);
 
-            IEnumerable<TeamRace> teamRaces = ITeamRaceRepository.GetAll().Where(x => x.Id_team == id);
+            IEnumerable<TeamRace> teamRaces = ITeamRaceRepository.GetAll().Where(x => x.TeamId == id);
             foreach (TeamRace teamRace in teamRaces)
                 ITeamRaceRepository.Delete(teamRace);
 
-            IEnumerable<TeamComponent> teamComponents = ITeamComponentRepository.GetAll().Where(x => x.Id_team == id);
+            IEnumerable<TeamComponent> teamComponents = ITeamComponentRepository.GetAll().Where(x => x.TeamId == id);
             foreach (TeamComponent teamComponent in teamComponents)
                 ITeamComponentRepository.Delete(teamComponent);
 

@@ -49,13 +49,13 @@ namespace Racing_team_management.Controllers
                 Image = race.Image
             };
 
-            IEnumerable<TeamRace> teamRaces = ITeamRaceRepository.GetAll().Where(x => x.Id_race == id);
+            IEnumerable<TeamRace> teamRaces = ITeamRaceRepository.GetAll().Where(x => x.RaceId == id);
             if (teamRaces != null)
             {
                 List<String> teamNames = new List<string>();
                 foreach (TeamRace teamRace in teamRaces)
                 {
-                    Team team = ITeamRepository.GetAll().SingleOrDefault(x => x.Id == teamRace.Id_team);
+                    Team team = ITeamRepository.GetAll().SingleOrDefault(x => x.Id == teamRace.TeamId);
                     teamNames.Add(team.Team_name);
                 }
 
@@ -81,8 +81,8 @@ namespace Racing_team_management.Controllers
             {
                 TeamRace teamRace = new TeamRace()
                 {
-                    Id_team = value.IdTeams[i],
-                    Id_race = model.Id
+                    TeamId = value.IdTeams[i],
+                    RaceId = model.Id
                 };
                 ITeamRaceRepository.Create(teamRace);
             }
@@ -115,7 +115,7 @@ namespace Racing_team_management.Controllers
 
             if (value.IdTeams != null)
             {
-                IEnumerable<TeamRace> teamRaces = ITeamRaceRepository.GetAll().Where(x => x.Id_race == id);
+                IEnumerable<TeamRace> teamRaces = ITeamRaceRepository.GetAll().Where(x => x.RaceId == id);
                 foreach (TeamRace teamRace in teamRaces)
                 {
                     ITeamRaceRepository.Delete(teamRace);
@@ -125,8 +125,8 @@ namespace Racing_team_management.Controllers
                 {
                     TeamRace teamRace = new TeamRace()
                     {
-                        Id_team = value.IdTeams[i],
-                        Id_race = model.Id
+                        TeamId = value.IdTeams[i],
+                        RaceId = model.Id
                     };
                     ITeamRaceRepository.Create(teamRace);
                 }
@@ -141,7 +141,7 @@ namespace Racing_team_management.Controllers
         {
             Race model = IRaceRepository.Get(id);
 
-            IEnumerable<TeamRace> teamRaces = ITeamRaceRepository.GetAll().Where(x => x.Id_race == id);
+            IEnumerable<TeamRace> teamRaces = ITeamRaceRepository.GetAll().Where(x => x.RaceId == id);
             foreach (TeamRace teamRace in teamRaces)
             {
                 ITeamRaceRepository.Delete(teamRace);
