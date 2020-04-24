@@ -51,7 +51,8 @@ namespace Racing_team_management.Controllers
             TeamDetailsDTO TeamDTO = new TeamDetailsDTO()
             {
                 Team_name = Team.Team_name,
-                RealeaseYear = Team.RealeaseYear
+                RealeaseYear = Team.RealeaseYear,
+                Image = Team.Image
             };
 
             IEnumerable<Employee> employees = IEmployeeRepository.GetAll().Where(x => x.IdTeam == id);
@@ -83,7 +84,8 @@ namespace Racing_team_management.Controllers
             Team model = new Team()
             {
                 Team_name = value.Team_name,
-                RealeaseYear = value.RealeaseYear
+                RealeaseYear = value.RealeaseYear,
+                Image = value.Image
             };
             ITeamRepository.Create(model);
 
@@ -134,6 +136,10 @@ namespace Racing_team_management.Controllers
             if (value.Team_name != null)
             {
                 model.Team_name = value.Team_name;
+            }
+            if (value.Image != null)
+            {
+                model.Image = value.Image;
             }
 
             if (value.ComponentsId != null)

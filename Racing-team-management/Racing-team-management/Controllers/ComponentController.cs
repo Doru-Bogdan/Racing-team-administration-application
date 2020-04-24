@@ -51,7 +51,8 @@ namespace Racing_team_management.Controllers
                 Name = value.Name,
                 Price = value.Price,
                 Quantity = value.Quantity,
-                Status = value.Status
+                Status = value.Status,
+                Image = value.Image
             };
 
             return IComponentRepository.Create(model);
@@ -86,6 +87,10 @@ namespace Racing_team_management.Controllers
             if (value.Status != null)
             {
                 model.Status = value.Status;
+            }
+            if (value.Image != null)
+            {
+                model.Image = value.Image;
             }
 
             return IComponentRepository.Update(model);

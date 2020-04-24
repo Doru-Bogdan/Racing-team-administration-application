@@ -7,6 +7,7 @@ namespace Racing_team_management.DTOs
     {
         public string Team_name { get; set; }
         public int RealeaseYear { get; set; }
+        public string Image { get; set; }
 
         public List<string> Employees { get; set; }
         public List<string> Races { get; set; }
