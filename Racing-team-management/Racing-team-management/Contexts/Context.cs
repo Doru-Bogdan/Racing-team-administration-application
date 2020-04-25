@@ -21,7 +21,7 @@ namespace Racing_team_management.Contexts
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (isMigration)
-                optionsBuilder.UseSqlServer(@"Server=tcp:localhost,1401;Database=DBRacing_team_management;User Id=sa;Password=Mancare1968@;Trusted_Connection=False;");
+                optionsBuilder.UseSqlServer(@"Server=.\;Database=DBRacing_team_managment;Trusted_Connection=True;");
         }
         public Context()
         {

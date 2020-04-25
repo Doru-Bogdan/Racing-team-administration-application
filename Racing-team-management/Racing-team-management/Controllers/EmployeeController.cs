@@ -32,9 +32,20 @@ namespace Racing_team_management.Controllers
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public ActionResult<Employee> Get(int id)
+        public EmployeeDTO Get(int id)
         {
-            return IEmployeeRepository.Get(id);
+            Employee employee = IEmployeeRepository.Get(id);
+            EmployeeDTO dto = new EmployeeDTO()
+            {
+                IdTeam = employee.TeamId,
+                First_name = employee.First_name,
+                Second_name = employee.Second_name,
+                Age = employee.Age,
+                Function = employee.Function,
+
+            };
+
+            return dto;
         }
 
         // POST api/values

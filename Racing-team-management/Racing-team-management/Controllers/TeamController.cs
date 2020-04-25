@@ -89,43 +89,55 @@ namespace Racing_team_management.Controllers
             };
             ITeamRepository.Create(model);
 
-            foreach (EmployeeDTO employee in value.Employees)
-            {
-                Employee newEmployee = new Employee()
-                {
-                    TeamId = model.Id,
-                    First_name = employee.First_name,
-                    Second_name = employee.Second_name,
-                    Function = employee.Function,
-                    Age = employee.Age
-                };
-                IEmployeeRepository.Create(newEmployee);
-            }
 
-            for (int i = 0; i < value.ComponentsId.Count; i++)
+            if(value.Employees != null)
             {
-                TeamComponent newTeamComponent = new TeamComponent()
+                foreach (EmployeeDTO employee in value.Employees)
                 {
-                    ComponentId = value.ComponentsId[i],
-                    TeamId = model.Id
-                };
-                ITeamComponentRepository.Create(newTeamComponent);
+                    Employee newEmployee = new Employee()
+                    {
+                        TeamId = model.Id,
+                        First_name = employee.First_name,
+                        Second_name = employee.Second_name,
+                        Function = employee.Function,
+                        Age = employee.Age
+                    };
+                    IEmployeeRepository.Create(newEmployee);
+                }
             }
+           
 
-            for (int i = 0; i < value.RacesId.Count; i++)
+            if(value.ComponentsId != null)
             {
-                TeamRace newTeamRace = new TeamRace()
+                for (int i = 0; i < value.ComponentsId.Count; i++)
                 {
-                    TeamId = model.Id,
-                    RaceId = value.RacesId[i]
-                };
-                ITeamRaceRepository.Create(newTeamRace);
+                    TeamComponent newTeamComponent = new TeamComponent()
+                    {
+                        ComponentId = value.ComponentsId[i],
+                        TeamId = model.Id
+                    };
+                    ITeamComponentRepository.Create(newTeamComponent);
+                }
             }
+            
+            if(value.RacesId != null)
+            {
+                for (int i = 0; i < value.RacesId.Count; i++)
+                {
+                    TeamRace newTeamRace = new TeamRace()
+                    {
+                        TeamId = model.Id,
+                        RaceId = value.RacesId[i]
+                    };
+                    ITeamRaceRepository.Create(newTeamRace);
+                }
+            }
+            
         }
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, TeamDTO value)
+        public Team Put(int id, TeamDTO value)
         {
             Team model = ITeamRepository.Get(id);
 
@@ -195,6 +207,8 @@ namespace Racing_team_management.Controllers
                     ITeamRaceRepository.Create(newTeamRace);
                 }
             }
+
+            return ITeamRepository.Update(model);
         }
 
         // DELETE api/values/5
