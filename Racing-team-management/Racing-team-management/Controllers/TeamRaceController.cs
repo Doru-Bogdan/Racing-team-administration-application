@@ -56,11 +56,11 @@ namespace Racing_team_management.Controllers
         {
             TeamRace model = ITeamRaceRepository.Get(id);
 
-            if (value.Id_race != 0)
+            if (value.Id_race > 0)
             {
                 model.RaceId = value.Id_race;
             }
-            if (value.Id_team != 0)
+            if (value.Id_team > 0)
             {
                 model.TeamId = value.Id_team;
             }
