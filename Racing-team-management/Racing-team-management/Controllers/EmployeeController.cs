@@ -70,7 +70,7 @@ namespace Racing_team_management.Controllers
         {
             Employee model = IEmployeeRepository.Get(id);
 
-            if (value.Age != 0)
+            if (value.Age > 0)
             {
                 model.Age = value.Age;
             }
@@ -86,7 +86,7 @@ namespace Racing_team_management.Controllers
             {
                 model.Function = value.Function;
             }
-            if (value.IdTeam != 0)
+            if (value.IdTeam > 0)
             {
                 model.TeamId = value.IdTeam;
             }

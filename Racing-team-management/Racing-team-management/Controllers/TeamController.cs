@@ -141,7 +141,7 @@ namespace Racing_team_management.Controllers
         {
             Team model = ITeamRepository.Get(id);
 
-            if (value.RealeaseYear != 0)
+            if (value.RealeaseYear > 0)
             {
                 model.RealeaseYear = value.RealeaseYear;
             }

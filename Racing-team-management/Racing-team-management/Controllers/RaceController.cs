@@ -67,7 +67,7 @@ namespace Racing_team_management.Controllers
 
         // POST api/values
         [HttpPost]
-        public Race Post(RaceDTO value)
+        public void Post(RaceDTO value)
         {
             Race model = new Race()
             {
@@ -76,6 +76,8 @@ namespace Racing_team_management.Controllers
                 NumberOfSpectators = value.NumberOfSpectators,
                 Image = value.Image
             };
+
+            IRaceRepository.Create(model);
 
             for (int i = 0; i < value.IdTeams.Count; i++)
             {
@@ -86,8 +88,6 @@ namespace Racing_team_management.Controllers
                 };
                 ITeamRaceRepository.Create(teamRace);
             }
-
-            return IRaceRepository.Create(model);
         }
 
         // PUT api/values/5
@@ -96,7 +96,7 @@ namespace Racing_team_management.Controllers
         {
             Race model = IRaceRepository.Get(id);
 
-            if (value.Duration != 0)
+            if (value.Duration > 0)
             {
                 model.Duration = value.Duration;
             }
@@ -104,7 +104,7 @@ namespace Racing_team_management.Controllers
             {
                 model.Location = value.Location;
             }
-            if (value.NumberOfSpectators != 0)
+            if (value.NumberOfSpectators > 0)
             {
                 model.NumberOfSpectators = value.NumberOfSpectators;
             }
