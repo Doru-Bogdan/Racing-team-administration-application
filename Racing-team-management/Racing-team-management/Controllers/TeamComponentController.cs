@@ -56,11 +56,11 @@ namespace Racing_team_management.Controllers
         {
             TeamComponent model = ITeamComponentRepository.Get(id);
 
-            if (value.Id_team != 0)
+            if (value.Id_team > 0)
             {
                 model.TeamId = value.Id_team;
             }
-            if (value.Id_component != 0)
+            if (value.Id_component > 0)
             {
                 model.ComponentId = value.Id_component;
             }

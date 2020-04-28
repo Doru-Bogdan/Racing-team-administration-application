@@ -76,11 +76,11 @@ namespace Racing_team_management.Controllers
             {
                 model.Name = value.Name;
             }
-            if (Math.Abs(value.Price - 0.0000) < 0.0001)
+            if (Math.Abs(value.Price - 0.0000) > 0.01)
             {
                 model.Price = value.Price;
             }
-            if (value.Quantity != -1)
+            if (value.Quantity > -1)
             {
                 model.Quantity = value.Quantity;
             }
